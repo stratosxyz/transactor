@@ -23,7 +23,6 @@ function App() {
   const [amount, setAmount] = React.useState<string>('');
 
   var chainInfo = DymensionChainInfo;
-  chainInfo.chainId = "1"
 
   useEffect(() => {
     init();
@@ -31,7 +30,7 @@ function App() {
 
   const init = async () => {
     const keplr = await getKeplrFromWindow();
-    console.log('keplr: ', keplr);
+
     if(keplr) {
       try {
         // const chains = await keplr.getChainInfosWithoutEndpoints();
@@ -39,16 +38,14 @@ function App() {
         // console.log('chainInfo: ', ci);
         await keplr.enable(chainInfo.chainId);
       } catch (e) {
-        if (e instanceof Error) {
-          console.log(e.message);
-        }
+        console.log(e);
       }
     }
   }
 
   const getKeyFromKeplr = async () => {
     const key = await window.keplr?.getKey(chainInfo.chainId);
-    console.log('key: ', key);
+
     if (key) {
       setAddress(key.bech32Address)
     }

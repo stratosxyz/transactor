@@ -32,7 +32,8 @@ export const sendMsgs = async (
         signerInfos: [
           {
             publicKey: {
-              typeUrl: "/cosmos.crypto.secp256k1.PubKey",
+              // typeUrl: "/cosmos.crypto.secp256k1.PubKey",
+              typeUrl: "/ethermint.crypto.v1.ethsecp256k1.PubKey",
               value: PubKey.encode({
                 key: pubKey,
               }).finish(),
