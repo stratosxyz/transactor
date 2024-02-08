@@ -86,39 +86,15 @@ export const OsmosisChainInfo = {
 }
 
 
-// export const TestnetDymensionChainInfo = {
-//   // Chain-id of the Osmosis chain.
-//   chainId: "froopyland_100-1",
-//   // The name of the chain to be displayed to the user.
-//   chainName: "Dymension Testnet",
-//   // RPC endpoint of the chain. In this case we are using blockapsis, as it's accepts connections from any host currently. No Cors limitations.
-//   rpc: "https://dym.rpc.cumulo.com.es/",
-//   // REST endpoint of the chain.
-//   rest: "https://froopyland.blockpi.network/lcd/v1/public",
-//   currencies: [
-//     {
-//       // Coin denomination to be displayed to the user.
-//       coinDenom: "dym",
-//       // Actual denom (i.e. uatom, uscrt) used by the blockchain.
-//       coinMinimalDenom: "udym",
-//       // # of decimal points to convert minimal denomination to user-facing denomination.
-//       coinDecimals: 18,
-//       // (Optional) Keplr can show the fiat value of the coin if a coingecko id is provided.
-//       // You can get id from https://api.coingecko.com/api/v3/coins/list if it is listed.
-//       // coinGeckoId: ""
-//     },
-//   ],
-// }
-
-
 export const TestnetDymensionChainInfo = {
   chainId: "froopyland_100-1",
   chainName: "Dymension Testnet",
-  chainSymbolImageUrl: "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/froopyland_100/chain.png",
-  // RPC endpoint of the chain. In this case we are using blockapsis, as it's accepts connections from any host currently. No Cors limitations.
+  
   rpc: "https://dym.rpc.cumulo.com.es/",
-  // REST endpoint of the chain.
   rest: "https://froopyland.blockpi.network/lcd/v1/public",
+  explorer: "https://fl.dym.fyi/tx",
+  
+  chainSymbolImageUrl: "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/froopyland_100/chain.png",
   currencies: [
     {
       coinMinimalDenom: "udym",
@@ -169,55 +145,56 @@ export const TestnetDymensionChainInfo = {
 }
 
 export const DymensionChainInfo = {
-  "chainId": "dymension_1100-1",
-  "chainName": "Dymension",
+  chainId: "dymension_1100-1",
+  chainName: "Dymension",
   rpc: "https://dymension.blockpi.network/rpc/v1/public",
   rest: "https://dymension.blockpi.network/lcd/v1/public",
+  explorer: "https://dym.fyi/tx",
 
-  "chainSymbolImageUrl": "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/dymension_1100/chain.png",
-  "currencies": [
+  chainSymbolImageUrl: "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/dymension_1100/chain.png",
+  currencies: [
     {
-      "coinMinimalDenom": "adym",
-      "coinDenom": "DYM",
-      "coinDecimals": 18,
-      "coinGeckoId": "dymension",
-      "coinImageUrl": "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/dymension_1100/chain.png"
+      coinMinimalDenom: "adym",
+      coinDenom: "DYM",
+      coinDecimals: 18,
+      coinGeckoId: "dymension",
+      coinImageUrl: "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/dymension_1100/chain.png"
     }
   ],
-  "bip44": {
-    "coinType": 60
+  bip44: {
+    coinType: 60
   },
-  "bech32Config": {
-    "bech32PrefixAccAddr": "dym",
-    "bech32PrefixAccPub": "dympub",
-    "bech32PrefixValAddr": "dymvaloper",
-    "bech32PrefixValPub": "dymvaloperpub",
-    "bech32PrefixConsAddr": "dymvalcons",
-    "bech32PrefixConsPub": "dymvalconspub"
+  bech32Config: {
+    bech32PrefixAccAddr: "dym",
+    bech32PrefixAccPub: "dympub",
+    bech32PrefixValAddr: "dymvaloper",
+    bech32PrefixValPub: "dymvaloperpub",
+    bech32PrefixConsAddr: "dymvalcons",
+    bech32PrefixConsPub: "dymvalconspub"
   },
-  "stakeCurrency": {
-    "coinMinimalDenom": "adym",
-    "coinDenom": "DYM",
-    "coinDecimals": 18,
-    "coinGeckoId": "dymension",
-    "coinImageUrl": "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/dymension_1100/chain.png"
+  stakeCurrency: {
+    coinMinimalDenom: "adym",
+    coinDenom: "DYM",
+    coinDecimals: 18,
+    coinGeckoId: "dymension",
+    coinImageUrl: "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/dymension_1100/chain.png"
   },
-  "feeCurrencies": [
+  feeCurrencies: [
     {
-      "coinMinimalDenom": "adym",
-      "coinDenom": "DYM",
-      "coinDecimals": 18,
-      "coinGeckoId": "dymension",
-      "coinImageUrl": "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/dymension_1100/chain.png",
-      "gasPriceStep": {
-        "average": 20000000000,
-        "high": 20000000000,
-        "low": 20000000000
+      coinMinimalDenom: "adym",
+      coinDenom: "DYM",
+      coinDecimals: 18,
+      coinGeckoId: "dymension",
+      coinImageUrl: "https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/dymension_1100/chain.png",
+      gasPriceStep: {
+        average: 20000000000,
+        high: 20000000000,
+        low: 20000000000
       }
     }
   ],
-  "walletUrlForStaking": "https://wallet.keplr.app/chains/dymension",
-  "features": [
+  walletUrlForStaking: "https://wallet.keplr.app/chains/dymension",
+  features: [
     "ibc-go",
     "ibc-transfer",
     "ibc-pfm",
@@ -225,5 +202,5 @@ export const DymensionChainInfo = {
     "eth-address-gen",
     "eth-key-sign"
   ],
-  "beta": true
+  beta: true
 }

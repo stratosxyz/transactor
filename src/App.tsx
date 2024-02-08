@@ -22,6 +22,8 @@ function App() {
   const [recipient, setRecipient] = React.useState<string>('');
   const [amount, setAmount] = React.useState<string>('');
 
+  const [txHash, setTxHash] = React.useState<string>('');
+
   var chainInfo = DymensionChainInfo;
 
   useEffect(() => {
@@ -90,7 +92,7 @@ function App() {
       }
 
       try {
-        await sendMsgs(
+        const hash = await sendMsgs(
           window.keplr,
           chainInfo,
           key.bech32Address,
@@ -101,7 +103,10 @@ function App() {
               amount: "236",
             }],
             gas: gasLimit,
-          })
+          });
+        
+        setTxHash(hash || "");
+
       } catch (e) {
         if (e instanceof Error) {
           console.log(e.message);
@@ -240,6 +245,10 @@ function App() {
             </div>
 
             <button className="keplr-button" onClick={sendMessage}>Send</button>
+
+            {txHash &&
+              <div> tx: <a href={ chainInfo.explorer + '/' + txHash } target="_blank">{txHash}</a></div>
+            }
           </div>
 
         </div>

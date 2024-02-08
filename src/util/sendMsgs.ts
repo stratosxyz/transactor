@@ -76,13 +76,16 @@ export const sendMsgs = async (
       signDoc: signed.signed,
     }
 
-    // const txHash = await broadcastTxSync(keplr, chainInfo.chainId, signedTx.tx);
     const txHash = await keplr.sendTx(chainInfo.chainId, signedTx.tx, "sync" as BroadcastMode);
+    const hash = Array.prototype.map.call(txHash, x => ('00' + x.toString(16)).slice(-2)).join('');
+    console.log("Transaction hash: ", hash);
+
     const txTracer = new TendermintTxTracer(chainInfo.rpc, "/websocket");
     txTracer.traceTx(txHash).then((tx) => {
       alert("Transaction commit successfully");
     });
 
+    return hash.toUpperCase();
   }
 }
 
@@ -98,10 +101,3 @@ export const fetchAccountInfo = async (chainInfo: ChainInfo, address: string) =>
   }
 }
 
-export const broadcastTxSync = async (
-  keplr:Keplr,
-  chainId: string,
-  tx: Uint8Array,
-): Promise<Uint8Array> => {
-  return await keplr.sendTx(chainId,  tx, "sync" as BroadcastMode)
-}
