@@ -5,13 +5,16 @@ import {Balances} from "./types/balance";
 import {Dec, DecUtils} from "@keplr-wallet/unit";
 import {sendMsgs} from "./util/sendMsgs";
 import {api} from "./util/api";
+import {encodeMsg} from "./util/encode";
 import {simulateMsgs} from "./util/simulateMsgs";
 import {MsgSend} from "./proto-types-gen/src/cosmos/bank/v1beta1/tx";
-import {MsgCreateValidator} from "./proto-types-gen/src/cosmos/staking/v1beta1/tx";
 
 import "./styles/container.css";
 import "./styles/button.css";
 import "./styles/item.css";
+
+
+
 
 function App() {
   const [address, setAddress] = React.useState<string>('');
@@ -24,13 +27,14 @@ function App() {
 
   const [txHash, setTxHash] = React.useState<string>('');
 
-  var chainInfo = DymensionChainInfo;
+  var chainInfo = TestnetDymensionChainInfo;
 
   useEffect(() => {
     init();
   }, []);
 
   const init = async () => {
+    setGasLimit("300000");
     const keplr = await getKeplrFromWindow();
 
     if(keplr) {
@@ -76,28 +80,29 @@ function App() {
   const sendMessage = async () => {
     if (window.keplr) {
       const msg = JSON.parse(message);
-      const typeUrl = msg["@type"];
-      delete msg["@type"];
 
-      const typeParts = typeUrl.split('.');
-      const msgTypeName = typeParts.pop();
-      const MsgType = (await import("./proto-types-gen/src" + typeParts.join('/') + "/tx"))[msgTypeName];
+      // const typeUrl = msg["@type"];
+      // delete msg["@type"];
+      // const typeParts = typeUrl.split('.');
+      // const msgTypeName = typeParts.pop();
+      // const MsgType = (await import("./proto-types-gen/src" + typeParts.join('/') + "/tx"))[msgTypeName];
 
-      const pb = MsgType.fromJSON(msg);
-      const msgBytes = MsgType.encode(pb).finish();
+      const protoMsg = await encodeMsg(msg);
+      // const msgDoc = MsgType.fromJSON(msg);
+      // const msgBytes = MsgType.encode(msgDoc).finish();
 
       const key = await window.keplr.getKey(chainInfo.chainId);
-      const protoMsgs = {
-        typeUrl: typeUrl,
-        value: msgBytes,
-      }
+      // const protoMsgs = {
+      //   typeUrl: typeUrl,
+      //   value: msgBytes,
+      // }
 
       try {
         const hash = await sendMsgs(
           window.keplr,
           chainInfo,
           key.bech32Address,
-          [protoMsgs],
+          [protoMsg],
           {
             amount: [{
               denom: chainInfo.currencies[0].coinMinimalDenom,

@@ -32,6 +32,7 @@ import "zx/globals";
       "cosmos/distribution/v1beta1/tx.proto",
       "cosmos/crypto/multisig/v1beta1/multisig.proto",
       "cosmos/crypto/secp256k1/keys.proto",
+      "cosmos/crypto/ed25519/keys.proto",
       "cosmos/tx/v1beta1/tx.proto",
       "cosmos/tx/signing/v1beta1/signing.proto",
       "cosmos/base/abci/v1beta1/abci.proto",
