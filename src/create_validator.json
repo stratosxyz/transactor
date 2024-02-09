@@ -1,0 +1,26 @@
+{
+    "@type": "/cosmos.staking.v1beta1.MsgCreateValidator",
+    "description": {
+      "moniker": "mainnet",
+      "identity": "",
+      "website": "",
+      "securityContact": "",
+      "details": ""
+    },
+    "commission": {
+      "rate": "50000000000000000",
+      "maxRate": "50000000000000000",
+      "maxChangeRate": "0"
+    },
+    "minSelfDelegation": "1",
+    "delegatorAddress": "dym1vnvrde8jh9se9v58mp9epl35haztwq3dhqc36q",
+    "validatorAddress": "dymvaloper1vnvrde8jh9se9v58mp9epl35haztwq3d5tyny6",
+    "pubkey": {
+      "typeUrl": "/cosmos.crypto.ed25519.PubKey",
+      "value": "CiA/a/4MdwVuaayWkD0eJbc72fvuRNZRJtruYj0yGRUvgQ=="
+    },
+    "value": {
+      "denom": "adym",
+      "amount": "1"
+    }
+}

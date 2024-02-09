@@ -83,7 +83,8 @@ function App() {
       const msgTypeName = typeParts.pop();
       const MsgType = (await import("./proto-types-gen/src" + typeParts.join('/') + "/tx"))[msgTypeName];
 
-      const msgBytes = MsgType.encode(MsgType.fromJSON(msg)).finish();
+      const pb = MsgType.fromJSON(msg);
+      const msgBytes = MsgType.encode(pb).finish();
 
       const key = await window.keplr.getKey(chainInfo.chainId);
       const protoMsgs = {
@@ -100,7 +101,7 @@ function App() {
           {
             amount: [{
               denom: chainInfo.currencies[0].coinMinimalDenom,
-              amount: "236",
+              amount: "6037880000000000",
             }],
             gas: gasLimit,
           });
