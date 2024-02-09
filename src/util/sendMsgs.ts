@@ -32,7 +32,10 @@ export const sendMsgs = async (
         signerInfos: [
           {
             publicKey: {
+              // When using Fordefi:
               // typeUrl: "/cosmos.crypto.secp256k1.PubKey",
+              //
+              // When using Keplr:
               typeUrl: "/ethermint.crypto.v1.ethsecp256k1.PubKey",
               value: PubKey.encode({
                 key: pubKey,
