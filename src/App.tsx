@@ -14,8 +14,6 @@ import "./styles/button.css";
 import "./styles/item.css";
 
 
-
-
 function App() {
   const [address, setAddress] = React.useState<string>('');
   const [balance, setBalance] = React.useState<string>('');
@@ -27,7 +25,8 @@ function App() {
 
   const [txHash, setTxHash] = React.useState<string>('');
 
-  var chainInfo = TestnetDymensionChainInfo;
+  var chainInfo = DymensionChainInfo;
+  // var chainInfo = TestnetDymensionChainInfo;
 
   useEffect(() => {
     init();

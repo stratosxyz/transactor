@@ -18,9 +18,14 @@ export const sendMsgs = async (
   memo: string = ""
 ) => {
   const account = await fetchAccountInfo(chainInfo, sender);
-  const { pubKey } = await keplr.getKey(chainInfo.chainId);
+  const key = await keplr.getKey(chainInfo.chainId);
 
   if(account) {
+    let signerTypeUrl = "/cosmos.crypto.secp256k1.PubKey";
+    if (key.algo === "ethsecp256k1") {
+      signerTypeUrl = "/ethermint.crypto.v1.ethsecp256k1.PubKey";
+    }
+
     const signDoc = {
       bodyBytes: TxBody.encode(
         TxBody.fromPartial({
@@ -32,13 +37,13 @@ export const sendMsgs = async (
         signerInfos: [
           {
             publicKey: {
+              typeUrl: signerTypeUrl,
               // When using Fordefi:
               // typeUrl: "/cosmos.crypto.secp256k1.PubKey",
-              //
               // When using Keplr:
-              typeUrl: "/ethermint.crypto.v1.ethsecp256k1.PubKey",
+              // typeUrl: "/ethermint.crypto.v1.ethsecp256k1.PubKey",
               value: PubKey.encode({
-                key: pubKey,
+                key: key.pubKey,
               }).finish(),
             },
             modeInfo: {
@@ -69,7 +74,7 @@ export const sendMsgs = async (
       sender,
       signDoc,
     )
-
+    
     const signedTx = {
       tx: TxRaw.encode({
         bodyBytes: signed.signed.bodyBytes,
